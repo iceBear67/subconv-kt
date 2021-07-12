@@ -1,0 +1,42 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.5.10'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.5.10'
+    id 'application'
+
+    id 'com.github.johnrengelman.shadow' version "6.1.0"
+
+}
+
+group = 'io.ib67'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    jcenter()
+    mavenCentral()
+    maven { url 'https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven' }
+}
+
+dependencies {
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+    implementation 'io.ktor:ktor-server-netty:1.5.2'
+    implementation 'io.ktor:ktor-html-builder:1.5.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-html-jvm:0.7.2'
+    implementation ("net.mamoe.yamlkt:yamlkt:0.10.0")
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.github.kevinsawicki:http-request:6.0'
+}
+
+test {
+    useJUnit()
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = '1.8'
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = '1.8'
+}
+application {
+    mainClassName = 'ServerKt'
+}
