@@ -21,7 +21,7 @@ val gson = Gson()
 val sdf = SimpleDateFormat()
 
 fun main() {
-    embeddedServer(Netty, port = 80, host = "0.0.0.0") {
+    embeddedServer(Netty, port = System.getProperty("port").toInt(), host = "0.0.0.0") {
         routing {
             get("/subconv/{subUrl}/{extraOptions}") {
                 if(call.parameters["subUrl"]==null){ //  || call.parameters["extraOptions"]==null
