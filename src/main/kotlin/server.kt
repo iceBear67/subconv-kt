@@ -53,7 +53,7 @@ fun main() {
                                     "port" -> data.port = json[it].asString
                                     "password" -> data.password=json[it].asString
                                     else -> {
-                                        extraOpts.append("$it=${json[it].asString}").append('&')
+                                        extraOpts.append("$it=${URLEncoder.encode(json[it].asString)}").append('&')
                                     }
                                 }
                             }
@@ -78,7 +78,7 @@ fun main() {
     }.start(wait = true)
 }
 fun genSub(protoType:String,password:String,serverIp:String,serverPort:Int,extraOptions:String?,name:String?):String{
-    return "$protoType://$password@$serverIp:$serverPort"+if(extraOptions==null){""}else{"?${URLEncoder.encode(extraOptions)}"} + if(name==null){""}else{"#$name"}
+    return "$protoType://$password@$serverIp:$serverPort"+if(extraOptions==null){""}else{"?${extraOptions}"} + if(name==null){""}else{"#$name"}
 }
 class ClashSubColumn{
     var name:String?=null
