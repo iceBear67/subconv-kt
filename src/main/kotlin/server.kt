@@ -66,7 +66,9 @@ fun main() {
                             }
                         }
                         subConvResult.append(genSub("trojan","114514","1",1,null,"[Converter] Time: ${sdf.format(Date())} ${sub.size} proxies."))
-                        call.respondText { subConvResult.toString() }
+                        call.respondText {
+                            Base64.encodeToString(subConvResult.toString().toByteArray(),false);
+                        }
                         }catch(a: Throwable){
                             a.printStackTrace()
                         }
