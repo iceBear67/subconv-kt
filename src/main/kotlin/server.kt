@@ -30,7 +30,7 @@ fun main() {
                     val clashSubURL = Base64.URLSafe.decode(call.parameters["subUrl"]!!)
                     val extraOptions =if(call.parameters["extraOptions"]!=null) Base64.URLSafe.decode(call.parameters["extraOptions"]!!) else ""
                     runCatching {
-                        HttpRequest.get(clashSubURL).body()
+                        HttpRequest.get(clashSubURL).userAgent("Go-http-client/1.1").body()
                     }.onFailure {
                         it.printStackTrace()
                         call.response.status(HttpStatusCode.NoContent)
